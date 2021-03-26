@@ -10,9 +10,26 @@
   <body>
     <h1>Color Flipper</h1>
     <form id="user-input">
-      <label for="color">Enter Color:</label>
-      <input type="text" name="color" id="color" />
+      <label for="color-type">Color Type</label>
+      <select name="color-type" id="color-type">
+        <option value="hex">Hexadecimal</option>
+        <option value="rgb">RGB</option>
+      </select>
+      <label for="color-hex"
+        >Enter HEX code
+        <input type="text" name="color-hex" id="color-hex" />
+      </label>
+      <label for="color-rgb"
+        >Enter RGB Values
+        <input type="number" name="color-rgb" id="color-r" />
+        <input type="number" name="color-rgb" id="color-g" />
+        <input type="number" name="color-rgb" id="color-b" />
+      </label>
       <button type="submit">Flip!</button>
+    </form>
+    <form id="output">
+      <input type="text" disabled />
+      <button type="submit">Copy</button>
     </form>
     <script src="index.js"></script>
   </body>
