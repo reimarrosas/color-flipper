@@ -43,11 +43,11 @@ formInput.addEventListener("submit", (e) => {handleUserInput(e, colorOptions.val
 const inputList = [];
 function handleUserInput(e, colorType) {
   const inputElements = filterVisibleInputs([...e.target.elements], colorType);
-  inputElements.forEach(input => {
-    if (validateInput(input, colorType)) {
-      inputList.push(input)
-    } else alert("Invalid Input!");
-  });
+  if (inputElements.every(input => validateInput(input.value, colorType))) {
+    inputElements.forEach(input => inputList.push(input.value));
+  } else {
+    alert("Invalid Input!");
+  }
   e.preventDefault();
 }
 
@@ -58,5 +58,7 @@ function filterVisibleInputs(inputList, colorType) {
 function validateInput(input, colorType) {
   return colorType === "hex"
           ? /#[0-9a-f]/.test(input)
-          : /[0-255]/.test(input);
+          : parseInt(input) < 256
+            && parseInt(input) >= 0;
 }
+
