@@ -97,3 +97,15 @@ function handleOutput(e, colorInputs) {
   display.value = calculateComplementary(colorInputs);
   e.preventDefault();
 }
+
+// || Copy Functionality
+const copyForm = document.getElementById("output");
+copyForm.addEventListener("submit", handleCopyForm);
+
+function handleCopyForm(e) {
+  const textToCopy = e.target.elements[0];
+  textToCopy.value.select();
+  textToCopy.value.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  e.preventDefault();
+}
