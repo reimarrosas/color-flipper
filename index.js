@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Take Input
  *    selection? !!
@@ -17,6 +19,9 @@
  *    display output to copy-able input:disabled
  */
 
+let colorInputs;
+
+// || Take user input
 const colorOptions = document.getElementById("color-type");
 colorOptions.addEventListener("change", toggleFormInputs);
 
@@ -40,19 +45,19 @@ function compareSelectedToDisplayedInput(colorType) {
 const formInput = document.getElementById("user-input");
 formInput.addEventListener("submit", (e) => {handleUserInput(e, colorOptions.value)});
 
-const inputList = [];
 function handleUserInput(e, colorType) {
   const inputElements = filterVisibleInputs([...e.target.elements], colorType);
-  if (inputElements.every(input => validateInput(input.value, colorType))) {
-    inputElements.forEach(input => inputList.push(input.value));
+  if (inputElements.every(input => validateInput(input, colorType))) {
+    colorInputs = [...inputElements];
   } else {
     alert("Invalid Input!");
   }
   e.preventDefault();
 }
 
-function filterVisibleInputs(inputList, colorType) {
-  return inputList.filter(input => input.name.includes(colorType));
+function filterVisibleInputs(inputs, colorType) {
+  return inputs.filter(input => input.name.includes(colorType))
+               .map(input => input.value);
 }
 
 function validateInput(input, colorType) {
@@ -62,3 +67,32 @@ function validateInput(input, colorType) {
             && parseInt(input) >= 0;
 }
 
+// || Calculate Complementary Colors from User Input
+function calculateComplementary(colorInput) {
+  if (colorInput.length === 1) {
+    const hexValue = colorInput[0];
+    const inputs = hexValue.slice(1).toLowerCase().match(/\w\w/g);
+    return calculateForHex(inputs);
+  }
+
+  return calculateForRgb(colorInput);
+}
+
+function calculateForHex(rgbSeparatedHex) {
+  return rgbSeparatedHex
+          .map(componentColor => (255 - parseInt(componentColor, 16)).toString(16).padStart(2, "0"))
+          .reduce((colorAcc, componentColorCur) => `${colorAcc}${componentColorCur}`, "#");
+}
+
+function calculateForRgb(rgbValues) {
+  return rgbValues.map(componentColor => (255 - parseInt(componentColor)).toString());
+}
+
+// || Display output
+formInput.addEventListener("submit", (e) => {handleOutput(e, colorInputs)});
+
+function handleOutput(e, colorInputs) {
+  const display = document.querySelector("input[disabled]");
+  display.value = calculateComplementary(colorInputs);
+  e.preventDefault();
+}
