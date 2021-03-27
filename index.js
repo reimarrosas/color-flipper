@@ -19,7 +19,7 @@
  *    display output to copy-able input:disabled
  */
 
-let colorInputs;
+let colorInputs = [];
 
 // || Take user input
 const colorOptions = document.getElementById("color-type");
@@ -73,9 +73,10 @@ function calculateComplementary(colorInput) {
     const hexValue = colorInput[0];
     const inputs = hexValue.slice(1).toLowerCase().match(/\w\w/g);
     return calculateForHex(inputs);
+  } else if (colorInput.length === 3) {
+    return calculateForRgb(colorInput);
   }
-
-  return calculateForRgb(colorInput);
+  return "Invalid Input!";
 }
 
 function calculateForHex(rgbSeparatedHex) {
