@@ -93,19 +93,19 @@ function calculateForRgb(rgbValues) {
 formInput.addEventListener("submit", (e) => {handleOutput(e, colorInputs)});
 
 function handleOutput(e, colorInputs) {
-  const display = document.querySelector("input[disabled]");
+  const display = document.querySelector("input[readonly]");
   display.value = calculateComplementary(colorInputs);
   e.preventDefault();
 }
 
 // || Copy Functionality
-const copyForm = document.getElementById("output");
-copyForm.addEventListener("submit", handleCopyForm);
+const copyButton = document.getElementById("copy-button");
+copyButton.addEventListener("click", handleCopyClick);
 
-function handleCopyForm(e) {
-  const textToCopy = e.target.elements[0];
-  textToCopy.value.select();
-  textToCopy.value.setSelectionRange(0, 99999);
+function handleCopyClick() {
+  const outputText = document.querySelector("input[readonly]");
+  outputText.focus();
+  outputText.select();
+  outputText.setSelectionRange(0, 100);
   document.execCommand("copy");
-  e.preventDefault();
 }
