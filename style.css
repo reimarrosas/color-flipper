@@ -43,7 +43,7 @@ input {
 }
 
 [type="number"] {
-  width: 50px;
+  width: 75px;
 }
 
 #user-input [type="submit"] {
@@ -52,4 +52,31 @@ input {
 
 #color-rgb {
   display: none;
+}
+
+button {
+  position: relative;
+  border-radius: 10px;
+  border: 1px solid #aaa;
+  padding: 0.2em 0;
+  cursor: pointer;
+  transition: 250ms;
+}
+
+button:last-child {
+  padding: 0.2em 1em;
+}
+
+button:hover {
+  background-color: #ffc3a0;
+}
+
+[readonly] {
+  cursor: default;
+}
+
+@media (max-width: 432px) {
+  label > span {
+    display: block;
+  }
 }
