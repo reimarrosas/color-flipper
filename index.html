@@ -8,34 +8,68 @@
     <title>Color Flipper</title>
   </head>
   <body>
-    <h1>Color Flipper</h1>
-    <label for="color-type">Color Type</label>
-    <select name="color-type" id="color-type" autocomplete="off">
-      <option value="hex" selected="selected">Hexadecimal</option>
-      <option value="rgb">RGB</option>
-    </select>
-    <form id="user-input">
-      <label for="color-hex" id="color-hex"
-        >Enter HEX code
-        <input
-          type="text"
-          name="color-hex"
-          id="color-hex"
-          placeholder="#FFFFFF"
-        />
-      </label>
-      <label for="color-rgb" id="color-rgb"
-        >Enter RGB Values
-        <input type="number" name="color-rgb" id="color-r" placeholder="255" />
-        <input type="number" name="color-rgb" id="color-g" placeholder="255" />
-        <input type="number" name="color-rgb" id="color-b" placeholder="255" />
-      </label>
-      <button type="submit">Flip!</button>
-    </form>
-    <form id="output">
-      <input type="text" disabled />
-      <button type="submit">Copy</button>
-    </form>
+    <h1>
+      <div class="first-word">
+        <span style="color: #f654a6">C</span>
+        <span style="color: #e8adaa">O</span>
+        <span style="color: #b90e0a">L</span>
+        <span style="color: #ffae42">O</span>
+        <span style="color: #ab8d3f">R</span>
+      </div>
+      <span style="color: #009b77">F</span>
+      <span style="color: #50c878">L</span>
+      <span style="color: #00cde1">I</span>
+      <span style="color: #006d6f">P</span>
+      <span style="color: #3944bc">P</span>
+      <span style="color: #241571">E</span>
+      <span style="color: #871f78">R</span>
+    </h1>
+    <label for="color-type"
+      >Color Type
+      <select name="color-type" id="color-type" autocomplete="off">
+        <option value="hex" selected="selected">Hexadecimal</option>
+        <option value="rgb">RGB</option>
+      </select>
+    </label>
+    <div class="wrapper">
+      <form id="user-input">
+        <label for="color-hex" id="color-hex"
+          >Enter HEX code
+          <input
+            type="text"
+            name="color-hex"
+            id="color-hex"
+            placeholder="#FFFFFF"
+          />
+        </label>
+        <label for="color-rgb" id="color-rgb"
+          >Enter RGB Values
+          <input
+            type="number"
+            name="color-rgb"
+            id="color-r"
+            placeholder="255"
+          />
+          <input
+            type="number"
+            name="color-rgb"
+            id="color-g"
+            placeholder="255"
+          />
+          <input
+            type="number"
+            name="color-rgb"
+            id="color-b"
+            placeholder="255"
+          />
+        </label>
+        <button type="submit">Flip!</button>
+      </form>
+      <form id="output">
+        <input type="text" disabled />
+        <button type="submit">Copy</button>
+      </form>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>
